@@ -99,7 +99,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
               padding: EdgeInsets.fromLTRB(20, 10, 20, 15),
               minWidth: MediaQuery.of(context).size.width,
               onPressed: () {
-                print("SignUp Pressed");
                 signUp(emailEditingController.text,
                     passwordEditingController.text);
               },
