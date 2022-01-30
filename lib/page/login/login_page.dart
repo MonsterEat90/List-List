@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:list_list_2/constants/color_constant.dart';
 import 'package:list_list_2/page/home/home_page.dart';
 import 'package:list_list_2/page/registration/registration_page.dart';
+import 'package:list_list_2/services/auth_services.dart';
+import 'package:provider/src/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -239,15 +241,22 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: EdgeInsets.fromLTRB(20, 10, 20, 15),
                                 minWidth: MediaQuery.of(context).size.width,
                                 onPressed: () {
-                                  _auth
-                                      .signInWithEmailAndPassword(
-                                          email: emailController.text,
-                                          password: passwordController.text)
-                                      .then((_) {
-                                    Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                            builder: (context) => HomePage()));
-                                  });
+                                  final String email =
+                                      emailController.text.trim();
+                                  final String password =
+                                      passwordController.text.trim();
+
+                                  if (email.isEmpty) {
+                                    print("Email is empty");
+                                  } else {
+                                    if (password.isEmpty) {
+                                      print("Password is empty");
+                                    } else {
+                                      context
+                                          .read<AuthService>()
+                                          .login(email, password);
+                                    }
+                                  }
                                 },
                               ),
                             ),

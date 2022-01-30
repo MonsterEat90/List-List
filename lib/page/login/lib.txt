@@ -1,0 +1,3 @@
+_auth.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text).then((_) {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+});
