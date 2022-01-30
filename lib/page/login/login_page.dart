@@ -1,11 +1,11 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, implementation_imports
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_list_2/constants/color_constant.dart';
-import 'package:list_list_2/page/home/home_page.dart';
+import 'package:list_list_2/page/forgot_password/forgot_password.dart';
 import 'package:list_list_2/page/registration/registration_page.dart';
 import 'package:list_list_2/services/auth_services.dart';
 import 'package:provider/src/provider.dart';
@@ -194,8 +194,13 @@ class _LoginPageState extends State<LoginPage> {
                           vertical: 10,
                         ),
                         child: GestureDetector(
-                          onTap: () {
-                            print("its tapped");
+                          onTap: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ForgotPassword(),
+                              ),
+                            ),
                           },
                           child: Text(
                             'Forgot Password ?',
