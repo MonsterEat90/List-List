@@ -3,7 +3,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_list_2/constants/color_constant.dart';
 import 'package:list_list_2/page/home/home_page.dart';
@@ -18,8 +17,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isObscure = true;
-  //Form Key
-  final _formKey = GlobalKey<FormState>();
   //Editing Controller
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -28,22 +25,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    //Login Function
-    void signIn(String email, String password) async {
-      if (_formKey.currentState!.validate()) {
-        await _auth
-            .signInWithEmailAndPassword(email: email, password: password)
-            .then((uid) => {
-                  Fluttertoast.showToast(msg: "Login Successful"),
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => HomePage()))
-                })
-            .catchError((e) {
-          Fluttertoast.showToast(msg: e!.message);
-        });
-      }
-    }
-
     return Scaffold(
       backgroundColor: defaultColor,
       body: Stack(
@@ -135,16 +116,9 @@ class _LoginPageState extends State<LoginPage> {
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           validator: (value) {
-                            if (value!.isEmpty) {
-                              return ("Please Enter Your Email!");
-                            }
-                            //reg expression for email validation
-                            if (!RegExp(
-                                    "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                                .hasMatch(value)) {
-                              return ("Please Enter a Valid Email!");
-                            }
-                            return null;
+                            setState(() {
+                              emailController.text = value!.trim();
+                            });
                           },
                           onSaved: (value) {
                             emailController.text = value!;
@@ -184,13 +158,9 @@ class _LoginPageState extends State<LoginPage> {
                           autocorrect: false,
                           controller: passwordController,
                           validator: (value) {
-                            RegExp regExp = RegExp(r'^,{6,}$');
-                            if (value!.isEmpty) {
-                              return ("Password is Required for Login!");
-                            }
-                            if (!regExp.hasMatch(value)) {
-                              return ("Please Enter a Valid Password");
-                            }
+                            setState(() {
+                              passwordController.text = value!.trim();
+                            });
                           },
                           onSaved: (value) {
                             passwordController.text = value!;
@@ -269,8 +239,15 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: EdgeInsets.fromLTRB(20, 10, 20, 15),
                                 minWidth: MediaQuery.of(context).size.width,
                                 onPressed: () {
-                                  signIn(emailController.text,
-                                      passwordController.text);
+                                  _auth
+                                      .signInWithEmailAndPassword(
+                                          email: emailController.text,
+                                          password: passwordController.text)
+                                      .then((_) {
+                                    Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                            builder: (context) => HomePage()));
+                                  });
                                 },
                               ),
                             ),
