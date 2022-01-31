@@ -64,7 +64,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           Container(
             margin: EdgeInsets.only(top: 20),
             child: Text(
-              'Reset Link will be sent to your email id',
+              'Reset Link will be sent to your email',
               style: GoogleFonts.dongle(fontSize: 25),
             ),
           ),

@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, implementation_imports
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,8 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   //Editing Controller
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  //Firebase
-  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
