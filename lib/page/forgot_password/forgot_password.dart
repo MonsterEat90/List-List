@@ -56,12 +56,32 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: powderBlue,
       appBar: AppBar(
-        title: Text("Reset Password"),
+        title: Text(
+          "Reset Password",
+          style: GoogleFonts.dongle(
+            fontSize: 40,
+            color: sapphireBlue,
+          ),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: sapphireBlue,
+          ),
+          onPressed: () {
+            //passing this to our root
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: Column(
         children: [
           Container(
+            alignment: Alignment.center,
             margin: EdgeInsets.only(top: 20),
             child: Text(
               'Reset Link will be sent to your email',
@@ -84,9 +104,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         autofocus: false,
                         controller: emailController,
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.mail),
                           labelText: 'Email',
                           labelStyle: GoogleFonts.dongle(fontSize: 20),
-                          border: const OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                           errorStyle: GoogleFonts.dongle(
                             color: redColor,
                             fontSize: 15,
@@ -154,7 +178,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       children: <Widget>[
                         Text(
                           "Don't have an account? ",
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black),
                         ),
                         GestureDetector(
                           child: Text(

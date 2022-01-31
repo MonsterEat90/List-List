@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, implementation_imports
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_list_2/constants/color_constant.dart';
 import 'package:list_list_2/page/forgot_password/forgot_password.dart';
+import 'package:list_list_2/page/home/home_page.dart';
 import 'package:list_list_2/page/registration/registration_page.dart';
 import 'package:list_list_2/services/auth_services.dart';
 import 'package:provider/src/provider.dart';
@@ -17,16 +19,58 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
   bool _isObscure = true;
   //Editing Controller
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  var email = "";
+  var password = "";
+
+  userLogin() async {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print("No User Found for that Email");
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              "No User Found for that Email",
+              style: TextStyle(fontSize: 18.0, color: Colors.black),
+            ),
+          ),
+        );
+      } else if (e.code == 'wrong-password') {
+        print("Wrong Password Provided by User");
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              "Wrong Password Provided by User",
+              style: TextStyle(fontSize: 18.0, color: Colors.black),
+            ),
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: defaultColor,
       body: Stack(
+        key: _formKey,
         children: <Widget>[
           SingleChildScrollView(
             child: Column(
@@ -115,9 +159,12 @@ class _LoginPageState extends State<LoginPage> {
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           validator: (value) {
-                            setState(() {
-                              emailController.text = value!.trim();
-                            });
+                            if (value == null || value.isEmpty) {
+                              return 'Please Enter Email';
+                            } else if (!value.contains('@')) {
+                              return 'Please Enter Valid Email';
+                            }
+                            return null;
                           },
                           onSaved: (value) {
                             emailController.text = value!;
@@ -157,9 +204,10 @@ class _LoginPageState extends State<LoginPage> {
                           autocorrect: false,
                           controller: passwordController,
                           validator: (value) {
-                            setState(() {
-                              passwordController.text = value!.trim();
-                            });
+                            if (value == null || value.isEmpty) {
+                              return 'Please Enter Password';
+                            }
+                            return null;
                           },
                           onSaved: (value) {
                             passwordController.text = value!;
@@ -249,16 +297,18 @@ class _LoginPageState extends State<LoginPage> {
                                       passwordController.text.trim();
 
                                   if (email.isEmpty) {
-                                    print("Email is empty");
+                                    print("Email is Empty");
                                   } else {
                                     if (password.isEmpty) {
-                                      print("Password is empty");
+                                      print("Password is Empty");
                                     } else {
-                                      context
-                                          .read<AuthService>()
-                                          .login(email, password);
+                                      context.read<AuthService>().login(
+                                            email,
+                                            password,
+                                          );
                                     }
                                   }
+                                  userLogin();
                                 },
                               ),
                             ),

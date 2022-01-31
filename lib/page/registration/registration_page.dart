@@ -35,7 +35,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     super.dispose();
   }
 
-  registration() async {
+  passwordRegistration() async {
     if (password == confirmPassword) {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
@@ -61,10 +61,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
           print("Password Provided is too Weak");
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              backgroundColor: Colors.orangeAccent,
+              backgroundColor: lightOrange,
               content: Text(
                 "Password Provided is too Weak",
-                style: TextStyle(fontSize: 18.0, color: Colors.black),
+                style: GoogleFonts.dongle(fontSize: 18.0, color: blackColor),
               ),
             ),
           );
@@ -72,10 +72,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
           print("Account Already exists");
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              backgroundColor: Colors.orangeAccent,
+              backgroundColor: lightOrange,
               content: Text(
                 "Account Already exists",
-                style: TextStyle(fontSize: 18.0, color: Colors.black),
+                style: GoogleFonts.dongle(fontSize: 18.0, color: blackColor),
               ),
             ),
           );
@@ -85,10 +85,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
       print("Password and Confirm Password doesn't match");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor: Colors.orangeAccent,
+          backgroundColor: lightOrange,
           content: Text(
             "Password and Confirm Password doesn't match",
-            style: TextStyle(fontSize: 16.0, color: Colors.black),
+            style: GoogleFonts.dongle(fontSize: 16.0, color: blackColor),
           ),
         ),
       );
@@ -122,7 +122,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ),
       ),
     );
-    //Passord Field
+    //Password Field
     final passwordField = TextFormField(
       autofocus: false,
       controller: passwordController,
@@ -209,7 +209,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     password = passwordController.text;
                     confirmPassword = confirmPasswordController.text;
                   });
-                  registration();
+                  passwordRegistration();
                 }
               },
             ),

@@ -1,0 +1,22 @@
+// Validate returns true if the form is valid, otherwise false.
+                if (_formKey.currentState!.validate()) {
+                  setState(() {
+                    email = emailController.text;
+                    password = passwordController.text;
+                    confirmPassword = confirmPasswordController.text;
+                  });
+                  registration();
+                }
+
+
+User? user = FirebaseAuth.instance.currentUser;
+                    await FirebaseFirestore.instance
+                        .collection("users")
+                        .doc(user!.uid)
+                        .set(
+                      {
+                        'uid': user.uid,
+                        'email': email,
+                        'password': password,
+                      },
+                    );
