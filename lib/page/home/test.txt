@@ -1,0 +1,11 @@
+
+      body: Center(
+        child: FlatButton(
+          child: Text('Logout'),
+          onPressed: () {
+            _auth.signOut();
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => LoginPage()));
+          },
+        ),
+      ),
