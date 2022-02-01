@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:list_list_2/constants/color_constant.dart';
 
 class CollectionPage extends StatelessWidget {
-  const CollectionPage({Key? key}) : super(key: key);
+  final int index;
+  CollectionPage(this.index);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: blackColor,
-      body: Center(
-        child: Text("account"),
-      ),
-    );
+    return Material();
   }
 }

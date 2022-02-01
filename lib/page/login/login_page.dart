@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:list_list_2/constants/color_constant.dart';
 import 'package:list_list_2/page/forgot_password/forgot_password.dart';
 import 'package:list_list_2/page/registration/registration_page.dart';
-import 'package:list_list_2/page/user_page/home/home_page.dart';
+import 'package:list_list_2/page/user_page/navbar.dart';
 import 'package:list_list_2/services/auth_services.dart';
 import 'package:provider/src/provider.dart';
 
@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomePage(),
+          builder: (context) => PageNavbar(),
         ),
       );
     } on FirebaseAuthException catch (e) {
