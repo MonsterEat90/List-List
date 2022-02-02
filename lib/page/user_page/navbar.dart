@@ -2,14 +2,16 @@
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:list_list_2/constants/color_constant.dart';
 import 'package:list_list_2/page/user_page/account/account_page.dart';
+import 'package:list_list_2/page/user_page/auction/auction_page.dart';
 import 'package:list_list_2/page/user_page/collection/collection_page.dart';
 import 'package:list_list_2/page/user_page/home/home_page.dart';
 import 'package:list_list_2/page/user_page/search/search_page.dart';
 
 class PageNavbar extends StatefulWidget {
-  PageNavbar({Key? key}) : super(key: key);
+  const PageNavbar({Key? key}) : super(key: key);
 
   @override
   State<PageNavbar> createState() => _PageNavbarState();
@@ -21,8 +23,9 @@ class _PageNavbarState extends State<PageNavbar> {
   List<Widget> initialWidgets = <Widget>[
     HomePage(1),
     SearchPage(2),
-    CollectionPage(3),
-    AccountPage(4),
+    AuctionPage(3),
+    CollectionPage(4),
+    AccountPage(5),
   ];
 
   @override
@@ -39,8 +42,9 @@ class _PageNavbarState extends State<PageNavbar> {
               items: <Widget>[
                 Icon(Icons.home, size: 30),
                 Icon(Icons.search, size: 30),
+                FaIcon(FontAwesomeIcons.gavel, size: 30),
                 Icon(Icons.collections, size: 30),
-                Icon(Icons.person, size: 30),
+                FaIcon(FontAwesomeIcons.user, size: 30),
               ],
               height: 55,
               index: _pages,

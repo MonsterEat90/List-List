@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:list_list_2/constants/color_constant.dart';
 import 'package:list_list_2/page/login/login_page.dart';
 
 class RegistrationPage extends StatefulWidget {
-  RegistrationPage({Key? key}) : super(key: key);
+  const RegistrationPage({Key? key}) : super(key: key);
 
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
@@ -95,6 +95,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     //Email Field
     final emailField = TextFormField(
