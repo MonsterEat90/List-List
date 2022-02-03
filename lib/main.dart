@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         theme: defaultTheme,
         darkTheme: darkTheme,
         themeMode: _themeManager.themeMode,
-        home: AuthWrapper(),
+        home: PageNavbar(),
       ),
     );
   }

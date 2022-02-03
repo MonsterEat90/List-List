@@ -41,10 +41,10 @@ class _PageNavbarState extends State<PageNavbar> {
             bottomNavigationBar: CurvedNavigationBar(
               items: <Widget>[
                 Icon(Icons.home, size: 30),
-                Icon(Icons.search, size: 30),
+                FaIcon(FontAwesomeIcons.search, size: 30),
                 FaIcon(FontAwesomeIcons.gavel, size: 30),
                 Icon(Icons.collections, size: 30),
-                FaIcon(FontAwesomeIcons.user, size: 30),
+                FaIcon(FontAwesomeIcons.solidUser, size: 30),
               ],
               height: 55,
               index: _pages,

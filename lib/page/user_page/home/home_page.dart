@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: defaultColor,
+      color: sapphireBlue,
       child: InkWell(
         child: Center(
           child: Icon(
