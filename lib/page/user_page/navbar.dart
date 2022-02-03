@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors,, prefer_const_literals_to_create_immutables
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +19,7 @@ class PageNavbar extends StatefulWidget {
 
 class _PageNavbarState extends State<PageNavbar> {
   int _pages = 0;
+  final navigationKey = GlobalKey<CurvedNavigationBarState>();
 
   List<Widget> initialWidgets = <Widget>[
     HomePage(1),
@@ -39,6 +40,7 @@ class _PageNavbarState extends State<PageNavbar> {
             extendBody: true,
             backgroundColor: defaultColor,
             bottomNavigationBar: CurvedNavigationBar(
+              key: navigationKey,
               items: <Widget>[
                 Icon(Icons.home, size: 30),
                 FaIcon(FontAwesomeIcons.search, size: 30),
@@ -55,6 +57,16 @@ class _PageNavbarState extends State<PageNavbar> {
                 setState(() {
                   _pages = index;
                 });
+              },
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: lightRedColor,
+              child: const FaIcon(FontAwesomeIcons.plus),
+              onPressed: () {
+                //temporary
+                final navigationState = navigationKey.currentState!;
+                navigationState.setPage(3);
               },
             ),
             body: Stack(

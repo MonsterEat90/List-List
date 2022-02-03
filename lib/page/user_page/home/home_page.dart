@@ -1,31 +1,55 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:list_list_2/constants/color_constant.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   final int index;
   HomePage(this.index);
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Future<void> onRefresh() async {
+    await Future.delayed(
+      const Duration(seconds: 2),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Material(
-      color: sapphireBlue,
-      child: InkWell(
-        child: Center(
-          child: Icon(
-            Icons.security,
-            color: Colors.orange,
-            size: index * 100.0 + 20.0,
-          ),
-        ),
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) {
-                return HomePage(index + 1);
-              },
+    return Scaffold(
+      appBar: AppBar(
+        title: TextButton(
+          child: Text(
+            'List List',
+            style: GoogleFonts.dongle(
+              fontSize: 45,
+              fontWeight: FontWeight.w700,
+              color: whiteColor,
             ),
-          );
-        },
+          ),
+          onPressed: () {
+            print("its pressed");
+          },
+        ),
+        backgroundColor: blueGrey,
+        actions: [
+          IconButton(
+            icon: FaIcon(FontAwesomeIcons.solidComments, size: 30),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: RefreshIndicator(
+        onRefresh: onRefresh,
+        child: SingleChildScrollView(
+          child: Column(),
+        ),
       ),
     );
   }

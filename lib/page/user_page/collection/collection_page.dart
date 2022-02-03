@@ -15,14 +15,6 @@ class _CollectionPageState extends State<CollectionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: defaultColor,
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: lightRedColor,
-        child: const FaIcon(FontAwesomeIcons.plus),
-        onPressed: () {
-          print("add button pressed");
-        },
-      ),
     );
   }
 }
