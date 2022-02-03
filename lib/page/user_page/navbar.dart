@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:list_list_2/constants/color_constant.dart';
 import 'package:list_list_2/page/user_page/account/account_page.dart';
 import 'package:list_list_2/page/user_page/auction/auction_page.dart';
+import 'package:list_list_2/page/user_page/collection/add_collection.dart';
 import 'package:list_list_2/page/user_page/collection/collection_page.dart';
 import 'package:list_list_2/page/user_page/home/home_page.dart';
 import 'package:list_list_2/page/user_page/search/search_page.dart';
@@ -64,9 +65,15 @@ class _PageNavbarState extends State<PageNavbar> {
               backgroundColor: lightRedColor,
               child: const FaIcon(FontAwesomeIcons.plus),
               onPressed: () {
-                //temporary
-                final navigationState = navigationKey.currentState!;
-                navigationState.setPage(3);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddCollection(),
+                  ),
+                );
+                // //temporary
+                // final navigationState = navigationKey.currentState!;
+                // navigationState.setPage(3);
               },
             ),
             body: Stack(

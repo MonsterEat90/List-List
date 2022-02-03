@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_list_2/constants/color_constant.dart';
+import 'package:list_list_2/page/user_page/home/chat_page.dart';
 
 class HomePage extends StatefulWidget {
   final int index;
@@ -41,7 +42,14 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: FaIcon(FontAwesomeIcons.solidComments, size: 30),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChatPage(),
+                ),
+              );
+            },
           ),
         ],
       ),
