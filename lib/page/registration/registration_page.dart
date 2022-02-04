@@ -181,7 +181,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           gradient: LinearGradient(
-            colors: const [chetwodeBlue, blueGrey],
+            colors: const [kDarkModerateCyan, kModerateCyan],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
@@ -226,7 +226,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: sapphireBlue,
+            color: kVeryDarkCyan,
           ),
           onPressed: () {
             //passing this to our root

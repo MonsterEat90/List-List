@@ -32,7 +32,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: powderBlue,
+        backgroundColor: kPowderBlue,
         content: Text(
           'Password Reset Email has been sent',
           style: GoogleFonts.dongle(fontSize: 20),
@@ -43,7 +43,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         print('No user found with that email');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            backgroundColor: powderBlue,
+            backgroundColor: kPowderBlue,
             content: Text(
               'No user found with that email',
               style: GoogleFonts.dongle(fontSize: 20),
@@ -57,13 +57,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: powderBlue,
+      backgroundColor: kPowderBlue,
       appBar: AppBar(
         title: Text(
           "Reset Password",
           style: GoogleFonts.dongle(
             fontSize: 40,
-            color: sapphireBlue,
+            color: kVeryDarkCyan,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -71,7 +71,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: sapphireBlue,
+            color: kVeryDarkCyan,
           ),
           onPressed: () {
             //passing this to our root
@@ -136,7 +136,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
                           gradient: const LinearGradient(
-                            colors: [chetwodeBlue, blueGrey],
+                            colors: [kDarkModerateCyan, kModerateCyan],
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ),
@@ -185,7 +185,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           child: Text(
                             "Register Now",
                             style: TextStyle(
-                              color: chetwodeBlue,
+                              color: kDarkModerateCyan,
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
                             ),

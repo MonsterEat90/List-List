@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
             print("its pressed");
           },
         ),
-        backgroundColor: blueGrey,
+        backgroundColor: kModerateCyan,
         actions: [
           IconButton(
             icon: FaIcon(FontAwesomeIcons.solidComments, size: 30),

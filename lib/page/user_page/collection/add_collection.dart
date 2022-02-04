@@ -13,7 +13,7 @@ class AddCollection extends StatelessWidget {
           "Add Collection",
           style: GoogleFonts.dongle(
             fontSize: 40,
-            color: sapphireBlue,
+            color: kVeryDarkCyan,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -21,7 +21,7 @@ class AddCollection extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: sapphireBlue,
+            color: kVeryDarkCyan,
           ),
           onPressed: () {
             //passing this to our root

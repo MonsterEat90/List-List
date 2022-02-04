@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                       bottomLeft: Radius.circular(100),
                     ),
                     gradient: LinearGradient(
-                      colors: [chetwodeBlue, blueGrey],
+                      colors: [kDarkModerateCyan, kModerateCyan],
                       stops: [0.0, 1],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -269,7 +269,7 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
                             gradient: LinearGradient(
-                              colors: [chetwodeBlue, blueGrey],
+                              colors: [kDarkModerateCyan, kModerateCyan],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
                             ),
@@ -332,7 +332,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         "Register Now",
                         style: TextStyle(
-                          color: chetwodeBlue,
+                          color: kDarkModerateCyan,
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
                         ),
