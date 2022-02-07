@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -33,6 +34,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
     passwordController.dispose();
     confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  clearText() {
+    emailController.clear();
+    passwordController.clear();
+    confirmPasswordController.clear();
   }
 
   passwordRegistration() async {
@@ -93,6 +100,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ),
       );
     }
+  }
+
+  // Adding User to Cloud Firestore
+  CollectionReference users = FirebaseFirestore.instance.collection('students');
+
+  Future<void> addUser() {
+    return users
+        .add({
+          'email': email,
+          'password': password,
+          'confirmPassword': confirmPassword
+        })
+        .then((value) => print('User Added'))
+        .catchError((error) => print('Failed to Add user: $error'));
   }
 
   @override
@@ -211,6 +232,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     confirmPassword = confirmPasswordController.text;
                   });
                   passwordRegistration();
+                  addUser();
+                  clearText();
                 }
               },
             ),
