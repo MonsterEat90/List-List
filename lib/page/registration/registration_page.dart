@@ -50,7 +50,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         print(userCredential);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            backgroundColor: Colors.redAccent,
+            backgroundColor: kSoftLimeGreen,
             content: Text(
               "Registered Successfully. Please Login..",
               style: TextStyle(fontSize: 20.0),
@@ -103,7 +103,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   }
 
   // Adding User to Cloud Firestore
-  CollectionReference users = FirebaseFirestore.instance.collection('students');
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
 
   Future<void> addUser() {
     return users
@@ -131,9 +131,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
         }
         return null;
       },
-      onSaved: (value) {
-        emailController.text = value!;
-      },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.mail),
@@ -155,9 +152,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
         }
         return null;
       },
-      onSaved: (value) {
-        passwordController.text = value!;
-      },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.vpn_key),
@@ -178,9 +172,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
           return "Password Don't Match!";
         }
         return null;
-      },
-      onSaved: (value) {
-        confirmPasswordController.text = value!;
       },
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
@@ -230,10 +221,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     email = emailController.text;
                     password = passwordController.text;
                     confirmPassword = confirmPasswordController.text;
+                    addUser();
+                    passwordRegistration();
+                    clearText();
                   });
-                  passwordRegistration();
-                  addUser();
-                  clearText();
                 }
               },
             ),
@@ -241,8 +232,41 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ),
       ),
     );
+    //Reset Button
+    final resetButton = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(50),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 60,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          color: greyColor,
+        ),
+        child: Material(
+          borderRadius: BorderRadius.circular(50),
+          color: Colors.transparent,
+          child: Center(
+            child: MaterialButton(
+              child: Text(
+                "Reset",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.dongle(
+                  fontSize: 28,
+                  color: defaultColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 15),
+              minWidth: MediaQuery.of(context).size.width,
+              onPressed: () => {clearText()},
+            ),
+          ),
+        ),
+      ),
+    );
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: whiteColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -264,7 +288,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               children: [
                 Material(
                   borderRadius: BorderRadius.circular(55),
-                  color: Colors.amber,
+                  color: kDarkModerateCyan,
                   child: Padding(
                     padding: const EdgeInsets.all(36.0),
                     child: Form(
@@ -293,6 +317,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             height: 15,
                           ),
                           signUpButton,
+                          SizedBox(
+                            height: 15,
+                          ),
+                          resetButton,
                           SizedBox(
                             height: 15,
                           ),
