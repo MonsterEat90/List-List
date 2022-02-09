@@ -60,7 +60,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       backgroundColor: kPowderBlue,
       appBar: AppBar(
         title: Text(
-          "Reset Password",
+          "Forgot Password",
           style: GoogleFonts.dongle(
             fontSize: 40,
             color: kVeryDarkCyan,
@@ -81,6 +81,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       ),
       body: Column(
         children: [
+          SizedBox(
+            height: 180,
+          ),
           Container(
             alignment: Alignment.center,
             margin: EdgeInsets.only(top: 20),

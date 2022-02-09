@@ -1,0 +1,145 @@
+return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 300,
+            color: kDarkModerateCyan,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 5,
+              vertical: 35,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.settings, size: 35),
+                  onPressed: () {
+                    print("aumjefygbsejbvskzudlfjgnv dkfjcbnv fk");
+                  },
+                )
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 52, top: 200),
+            padding: const EdgeInsets.only(top: 50),
+            width: 300,
+            height: 200,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: whiteColor,
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  spreadRadius: 2,
+                  blurRadius: 10,
+                )
+              ],
+            ),
+            child: Column(
+              children: [
+                Text(
+                  "Tubagus Adam",
+                  style: GoogleFonts.dongle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 30,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      style:
+                          TextButton.styleFrom(backgroundColor: kVeryDarkCyan),
+                      child: Text(
+                        "Following",
+                        style: GoogleFonts.dongle(fontSize: 25),
+                      ),
+                      onPressed: () {},
+                    ),
+                    const SizedBox(width: 10),
+                    ElevatedButton(
+                      style:
+                          TextButton.styleFrom(backgroundColor: kVeryDarkCyan),
+                      child: Text(
+                        "Followers",
+                        style: GoogleFonts.dongle(fontSize: 25),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 140, top: 120),
+            width: 120,
+            height: 120,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              image: const DecorationImage(
+                image: AssetImage("assets/profil.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+
+
+
+
+
+
+
+
+    Padding(
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+        child: ListView(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10.0),
+              child: TextFormField(
+                autofocus: false,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'New Password: ',
+                  hintText: 'Enter New Password',
+                  labelStyle: TextStyle(fontSize: 20.0),
+                  border: OutlineInputBorder(),
+                  errorStyle: TextStyle(color: Colors.redAccent, fontSize: 15),
+                ),
+                controller: newPasswordController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please Enter Password';
+                  }
+                  return null;
+                },
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Validate returns true if the form is valid, otherwise false.
+                if (_formKey.currentState!.validate()) {
+                  setState(() {
+                    newPassword = newPasswordController.text;
+                  });
+                  changePassword();
+                }
+              },
+              child: Text(
+                'Change Password',
+                style: TextStyle(fontSize: 18.0),
+              ),
+            ),
+          ],
+        ),
+      ),
